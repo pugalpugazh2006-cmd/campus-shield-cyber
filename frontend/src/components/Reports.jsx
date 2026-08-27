@@ -7,11 +7,33 @@ const mockLogs = [
 ];
 
 export default function Reports() {
+  const handleExportCSV = () => {
+    // Convert array of objects to CSV string
+    const headers = ['ID', 'Action', 'User', 'IP Address', 'Timestamp'];
+    const csvRows = [
+      headers.join(','),
+      ...mockLogs.map(log => `${log.id},${log.action},${log.user},${log.ip},${log.time}`)
+    ];
+    const csvContent = "data:text/csv;charset=utf-8," + csvRows.join('\n');
+    
+    // Create a downloadable link and click it programmatically
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "campus_shield_audit_logs.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="p-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-gray-800">Reports & Audit Logs</h1>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow">
+        <button 
+          onClick={handleExportCSV}
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow transition-colors"
+        >
           Export CSV
         </button>
       </div>

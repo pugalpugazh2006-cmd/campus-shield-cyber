@@ -29,6 +29,23 @@ export default function IncidentManager() {
     setIncidents(incidents.map(inc => inc.id === id ? { ...inc, status: newStatus } : inc));
   };
 
+  const handleExportCSV = () => {
+    const headers = ['ID', 'Type', 'User/Target', 'Severity', 'Status', 'Time'];
+    const csvRows = [
+      headers.join(','),
+      ...incidents.map(inc => `${inc.id},${inc.type},${inc.user},${inc.severity},${inc.status},${inc.time}`)
+    ];
+    const csvContent = "data:text/csv;charset=utf-8," + csvRows.join('\n');
+    
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "campus_shield_incidents.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div>
       <div className="flex justify-between items-end mb-8">
@@ -54,7 +71,10 @@ export default function IncidentManager() {
             <button className="flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors w-full sm:w-auto">
               <Filter size={16} /> Filter
             </button>
-            <button className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors w-full sm:w-auto">
+            <button 
+              onClick={handleExportCSV}
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors w-full sm:w-auto"
+            >
                Export CSV
             </button>
           </div>
