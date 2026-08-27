@@ -5,6 +5,11 @@ const mockLogs = [
   { id: 101, action: 'LOGIN_SUCCESS', user: 'admin@campus.edu', ip: '192.168.1.50', time: '2026-08-27 10:45:12' },
   { id: 102, action: 'LOGIN_FAILED', user: 'jane.smith@campus.edu', ip: '203.0.113.42', time: '2026-08-27 10:42:05' },
   { id: 103, action: 'USER_REGISTERED', user: 'new.student@campus.edu', ip: '198.51.100.12', time: '2026-08-27 09:15:33' },
+  { id: 104, action: 'LOGIN_FAILED', user: 'freshman_24@campus.edu', ip: '198.51.100.44', time: '2026-08-27 08:30:11' },
+  { id: 105, action: 'PASSWORD_RESET', user: 'faculty_math@campus.edu', ip: '192.168.1.15', time: '2026-08-26 14:22:19' },
+  { id: 106, action: 'VPN_CONNECTED', user: 'research_lead@campus.edu', ip: '203.0.113.99', time: '2026-08-26 11:05:44' },
+  { id: 107, action: 'SESSION_EXPIRED', user: 'guest_user_99@campus.edu', ip: '198.51.100.12', time: '2026-08-25 18:45:00' },
+  { id: 108, action: 'LOGIN_SUCCESS', user: 'admin@campus.edu', ip: '192.168.1.50', time: '2026-08-25 09:00:00' },
 ];
 
 export default function Reports() {

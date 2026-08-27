@@ -5,6 +5,10 @@ const initialIncidents = [
   { id: 1, type: 'Brute Force', user: 'jane.smith@campus.edu', severity: 'High', status: 'Open', time: '10:45 AM' },
   { id: 2, type: 'High Risk Login', user: 'john.doe@campus.edu', severity: 'Critical', status: 'Investigating', time: '09:12 AM' },
   { id: 3, type: 'New Device', user: 'admin@campus.edu', severity: 'Medium', status: 'Resolved', time: 'Yesterday' },
+  { id: 4, type: 'Failed Login', user: 'freshman_24@campus.edu', severity: 'Low', status: 'Open', time: 'Yesterday' },
+  { id: 5, type: 'Password Reset', user: 'faculty_math@campus.edu', severity: 'Low', status: 'Resolved', time: '2 Days Ago' },
+  { id: 6, type: 'VPN Access Anomaly', user: 'research_lead@campus.edu', severity: 'High', status: 'Investigating', time: '2 Days Ago' },
+  { id: 7, type: 'Session Expired', user: 'guest_user_99@campus.edu', severity: 'Low', status: 'Resolved', time: '3 Days Ago' },
 ];
 
 export default function IncidentManager() {
@@ -22,7 +26,8 @@ export default function IncidentManager() {
   const getSeverityBadge = (severity) => {
     if (severity === 'Critical') return 'bg-rose-950/80 text-rose-400 border border-rose-500/50 shadow-[0_0_10px_rgba(244,63,94,0.4)] animate-pulse';
     if (severity === 'High') return 'bg-orange-950/80 text-orange-400 border border-orange-500/50';
-    return 'bg-amber-950/80 text-amber-400 border border-amber-500/50';
+    if (severity === 'Medium') return 'bg-amber-950/80 text-amber-400 border border-amber-500/50';
+    return 'bg-blue-950/80 text-blue-400 border border-blue-500/50';
   };
 
   const updateStatus = (id, newStatus) => {
@@ -100,7 +105,12 @@ export default function IncidentManager() {
                 <tr key={incident.id} className="bg-transparent hover:bg-gray-800/30 transition-colors group">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className={`p-2 rounded-lg border ${incident.severity === 'Critical' ? 'bg-rose-950/30 text-rose-500 border-rose-900/50' : 'bg-orange-950/30 text-orange-500 border-orange-900/50'}`}>
+                      <div className={`p-2 rounded-lg border ${
+                        incident.severity === 'Critical' ? 'bg-rose-950/30 text-rose-500 border-rose-900/50' :
+                        incident.severity === 'High' ? 'bg-orange-950/30 text-orange-500 border-orange-900/50' :
+                        incident.severity === 'Medium' ? 'bg-amber-950/30 text-amber-500 border-amber-900/50' :
+                        'bg-blue-950/30 text-blue-500 border-blue-900/50'
+                      }`}>
                         <ShieldAlert size={18} />
                       </div>
                       <span className="font-bold text-gray-200">{incident.type}</span>
