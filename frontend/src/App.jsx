@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-do
 import Dashboard from './components/Dashboard';
 import IncidentManager from './components/IncidentManager';
 import Reports from './components/Reports';
-import { Shield, AlertTriangle, FileText, LayoutDashboard, Settings, UserCircle } from 'lucide-react';
+import Settings from './components/Settings';
+import { Shield, AlertTriangle, FileText, LayoutDashboard, Settings as SettingsIcon } from 'lucide-react';
 import './index.css';
 
 function App() {
@@ -43,9 +44,9 @@ function App() {
 
           <div className="mt-auto p-4 border-t border-gray-800/50">
              <nav className="flex flex-col space-y-1">
-              <a href="#" className="flex items-center gap-3 p-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-all">
-                <Settings size={20} /> <span className="font-medium">Settings</span>
-              </a>
+              <NavLink to="/settings" className={navLinkClasses}>
+                <SettingsIcon size={20} /> <span className="font-medium">Settings</span>
+              </NavLink>
             </nav>
           </div>
         </div>
@@ -72,6 +73,7 @@ function App() {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/incidents" element={<IncidentManager />} />
                 <Route path="/reports" element={<Reports />} />
+                <Route path="/settings" element={<Settings />} />
               </Routes>
             </div>
           </main>
