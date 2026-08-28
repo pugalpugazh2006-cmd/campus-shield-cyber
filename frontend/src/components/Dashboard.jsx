@@ -30,7 +30,10 @@ export default function Dashboard() {
     // WebSocket connection
     const token = localStorage.getItem('token');
     // For local dev, hardcode ws://localhost:8000. In production, determine dynamically.
-    const ws = new WebSocket(`ws://localhost:8000/api/websockets/ws?token=${token}`);
+    const wsUrl = import.meta.env.VITE_API_URL 
+      ? import.meta.env.VITE_API_URL.replace('http', 'ws') + '/ws'
+      : `ws://localhost:8000/api/v1/ws?token=${token}`;
+    const ws = new WebSocket(wsUrl);
     
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
