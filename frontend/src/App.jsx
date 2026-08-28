@@ -4,7 +4,8 @@ import Dashboard from './components/Dashboard';
 import IncidentManager from './components/IncidentManager';
 import Reports from './components/Reports';
 import Settings from './components/Settings';
-import { Shield, AlertTriangle, FileText, LayoutDashboard, Settings as SettingsIcon, Terminal } from 'lucide-react';
+import DemoControl from './components/DemoControl';
+import { Shield, AlertTriangle, FileText, LayoutDashboard, Settings as SettingsIcon, Terminal, PlaySquare } from 'lucide-react';
 import './index.css';
 
 function App() {
@@ -41,6 +42,9 @@ function App() {
               </NavLink>
               <NavLink to="/reports" className={navLinkClasses}>
                 <Terminal size={18} /> <span className="text-sm">Audit Logs</span>
+              </NavLink>
+              <NavLink to="/demo" className={navLinkClasses}>
+                <PlaySquare size={18} /> <span className="text-sm">Run Demo</span>
               </NavLink>
             </nav>
           </div>
@@ -81,6 +85,7 @@ function App() {
                 <Route path="/incidents" element={<IncidentManager />} />
                 <Route path="/reports" element={<Reports />} />
                 <Route path="/settings" element={<Settings />} />
+                <Route path="/demo" element={<DemoControl />} />
               </Routes>
             </div>
           </main>
