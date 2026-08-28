@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { AlertCircle, UserCheck, ShieldAlert, Activity, ArrowUpRight, ArrowDownRight, Terminal } from 'lucide-react';
 
-const mockData = [
-  { time: '10:00', riskScore: 0.1 },
 import api from '../services/api';
 
 export default function Dashboard() {
